@@ -38,7 +38,7 @@ MIDDLEWARE = [
 ]
 
 # 5. URLs and Templates
-ROOT_URLCONF = 'ez_book.urls'  # Make sure this matches your project folder name
+ROOT_URLCONF = 'book.urls'
 
 TEMPLATES = [
     {
@@ -70,10 +70,14 @@ DATABASES = {
 
 # 7. Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.User'
+     'AttributeSimilarityValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.'
+     'MinimumLengthValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.'
+     'CommonPasswordValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.'
+     'NumericPasswordValidator', },
 ]
 
 # 8. Internationalization
@@ -91,5 +95,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 11. Authentication Redirects
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

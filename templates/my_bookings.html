@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Reservations</h2>
+<div class="table-responsive mt-4">
+    <table class="table table-hover bg-white shadow-sm rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Table</th>
+                <th>Guests</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.booking_time }}</td>
+                <td>Table {{ booking.table.table_number }}</td>
+                <td>{{ booking.guest_count }}</td>
+                <td>
+                    <a href="{% url 'booking_edit' booking.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-sm btn-danger">Cancel</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center">No bookings found. <a href="{% url 'booking_create' %}">Make one now!</a></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

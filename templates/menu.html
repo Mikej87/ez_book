@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4">Our Menu</h1>
+    <p class="lead text-muted">Freshly prepared meals for your perfect reservation.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for dish in dishes %}
+    <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ dish.name }}</h5>
+                <p class="card-text text-muted">Our signature selection, prepared daily.</p>
+            </div>
+            <div class="card-footer bg-white border-0 text-end">
+                <span class="badge bg-success rounded-pill">Available</span>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="text-muted">Our chefs are currently updating the menu. Check back soon!</p>
+        <a href="/admin" class="btn btn-sm btn-outline-secondary">Add dishes in Admin</a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="text-center mt-5">
+    <a href="{% url 'booking_create' %}" class="btn btn-primary btn-lg">Book a Table to Try These!</a>
+</div>
+{% endblock %}
