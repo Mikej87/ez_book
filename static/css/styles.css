@@ -1,0 +1,59 @@
+:root {
+    --primary-orange: #ff5733;
+    --dark-bg: #212529;
+}
+
+body {
+    background-color: #f4f7f6; /* Soft light grey background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Custom Navbar Styling */
+.navbar {
+    border-bottom: 3px solid var(--primary-orange);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--primary-orange) !important;
+}
+
+/* 3. Custom Button Overrides */
+.btn-primary {
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
+}
+
+.btn-primary:hover {
+    background-color: #e44d2e;
+    border-color: #e44d2e;
+}
+
+/* 4. Table and Card Enhancements (Requirement #5) */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Subtle lift effect */
+}
+
+.table thead {
+    background-color: var(--dark-bg);
+    color: white;
+}
+
+/* 5. Booking Form Spacing */
+form p {
+    margin-bottom: 1.5rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}

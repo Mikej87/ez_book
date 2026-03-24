@@ -20,12 +20,20 @@ class Booking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def clean(self):
-        # 1. Avoid Double Bookings: Check if table is already taken at this date/time
         overlap = Booking.objects.filter(
             table=self.table,
             booking_date=self.booking_date,
             booking_time=self.booking_time
-        ).exclude(pk=self.pk) # Exclude self if we are editing an existing booking
+        ).exclude(pk=self.pk)
+
+        
+class Dish(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True) # Optional description
+    price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return self.name        
         
         if overlap.exists():
             raise ValidationError("Sorry, this table is already booked for that time.")
