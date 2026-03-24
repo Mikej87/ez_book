@@ -58,8 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'book.wsgi.application'
 
-# 6. Database (Req #1 & #9)
-# Uses SQLite locally, but switches to Postgres automatically on Heroku
+
 DATABASES = {
     'default': dj_database_url.config(
         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
