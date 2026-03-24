@@ -1,0 +1,1 @@
+web: gunicorn ez_book.wsgi
