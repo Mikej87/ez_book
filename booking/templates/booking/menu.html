@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<head>
+    <style>
+        .card {
+            background-image: url('../images/dishes.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+
 <div class="text-center mb-5">
     <h1 class="display-4">Our Menu</h1>
     <p class="lead text-muted">Freshly prepared meals for your perfect reservation.</p>
@@ -21,7 +31,7 @@
     </div>
     {% empty %}
     <div class="col-12 text-center py-5">
-        <p class="text-muted">Our chefs are currently updating the menu. Check back soon!</p>
+        <p class="text-muted"></p>
         <a href="/admin" class="btn btn-sm btn-outline-secondary">Add dishes in Admin</a>
     </div>
     {% endfor %}

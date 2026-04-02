@@ -31,10 +31,12 @@ class Dish(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True) # Optional description
     price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    dishes = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_dishes')
+    items = models.ManyToManyField('Dish', related_name='bookings') 
 
     def __str__(self):
-        return self.name        
-        
+        return self.name
+    
         if overlap.exists():
             raise ValidationError("Sorry, this table is already booked for that time.")
 
