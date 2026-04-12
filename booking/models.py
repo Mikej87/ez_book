@@ -24,12 +24,11 @@ class Booking(models.Model):
             table=self.table,
             booking_date=self.booking_date,
             booking_time=self.booking_time
-        ).exclude(pk=self.pk)
+        ).exclude(pk=self.pk)     
 
-        
 class Dish(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank=True) # Optional description
+    description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     dishes = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_dishes')
     items = models.ManyToManyField('Dish', related_name='bookings') 

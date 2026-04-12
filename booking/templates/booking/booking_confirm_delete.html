@@ -15,7 +15,7 @@
                     Time: {{ object.booking_time }}
                 </div>
 
-                <form method="post">
+                <form id="reservation-create-form" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger px-4">Yes, Cancel Booking</button>
                     <a href="{% url 'my_bookings' %}" class="btn btn-secondary px-4 ms-2">No, Keep It</a>

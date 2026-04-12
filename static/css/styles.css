@@ -4,8 +4,6 @@
 }
 
 body {
-    background-image: url('../images/modern-restaurant.jpg');
-    background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -24,8 +22,7 @@ body {
 
 .nav-link {
     color: whitesmoke;
-    margin-right: 15px;
-    position: center;
+    padding: 0.5rem 0.5rem;
 }
 
 .nav-link:hover {
@@ -37,7 +34,7 @@ body {
 }
 
 /* 3. Custom Button Overrides */
-btn .btn-primary {
+.btn.btn-primary {
     color: wheat;
 }
 
@@ -46,11 +43,11 @@ btn .btn-primary {
     border-color: wheat;
 }
 
-.d-block text-center mt-3 text-muted {
+.d-block.text-center.mt-3.text-muted {
     color: wheat;
 }
 
-.btn btn-primary btn-lg {
+.btn.btn-primary.btn-lg {
     background-color: var(--primary-orange);
     border-color: var(--primary-orange);
     color: wheat;
@@ -67,6 +64,33 @@ btn .btn-primary {
     transform: translateY(-5px); /* Subtle lift effect */
 }
 
+.menu-page { 
+    background-image: url('../images/dishes.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.home-page { 
+    background-image: url('../images/modern-restaurant.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.my_bookings-page {
+    background-image: url('../images/modern-interior-empty-wooden-chairs.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}   
+
+.new_reservation-page {
+    background-image: url('../images/wine-glass.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
 .table thead {
     background-color: var(--dark-bg);
     color: white;
@@ -88,6 +112,9 @@ h1, h2, h3 {
     color: whitesmoke;
     margin-bottom: 20px;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: inline-block; 
+    padding: 5px 15px;
 }
 
 p {
@@ -96,10 +123,7 @@ p {
     line-height: 1.6;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    display: inline-block; 
+    padding: 5px 15px;
 }
 
-menu {
-    background-image: url('../images/dishes.jpg');
-    background-size: cover;
-
-}
