@@ -23,6 +23,8 @@ body {
 .nav-link {
     color: whitesmoke;
     padding: 0.5rem 0.5rem;
+    position: relative;
+    justify-content: center;
 }
 
 .nav-link:hover {
@@ -50,7 +52,7 @@ body {
 .btn.btn-primary.btn-lg {
     background-color: var(--primary-orange);
     border-color: var(--primary-orange);
-    color: wheat;
+    color: black;
 }
 
 /* 4. Table and Card Enhancements (Requirement #5) */

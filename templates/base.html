@@ -5,38 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EZ Book | Restaurant Reservations</title>
-    <!-- Bootstrap CSS (Req #5) -->
-    <link href="https://cdn.jsdelivr.net" rel="stylesheet">
-    <!-- Custom CSS (Req #4) -->
+    
+    <!-- FIXED BOOTSTRAP CSS LINK -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-    <body class="{% block body_class %}{% endblock %}">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
+<body class="{% block body_class %}{% endblock %}">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Brand -->
             <a class="navbar-brand" href="{% url 'home' %}">EZ Book</a>
-            <div class="navbar-nav mx-auto">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-                <a class="nav-link" href="{% url 'menu' %}">Menu</a>
-                {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
-                    <a class="nav-link" href="{% url 'booking_create' %}">New Reservation</a>
-                    <form action="{% url 'logout' %}" method="post" class="d-inline">
-                        {% csrf_token %}<button type="submit" class="btn btn-link nav-link">Logout</button>
-                    </form>
-                {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                {% endif %}
+
+            <!-- Centered Links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
+                        <a class="nav-link" href="{% url 'booking_create' %}">New Reservation</a>
+                        <form action="{% url 'logout' %}" method="post" class="d-inline">
+                            {% csrf_token %}<button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
+
+            <!-- Empty spacer to balance the Brand logo on the left -->
+            <div style="width: 80px;" class="d-none d-lg-block"></div>
+        </div>  
     </nav>
 
     <div class="container mt-5">
         {% block content %}{% endblock %}
     </div>
-     <!-- Bootstrap JS (Optional but recommended) -->
-    <script src="https://cdn.jsdelivr.net"></script>
+
+    <!-- FIXED BOOTSTRAP JS LINK -->
+    <script src="https://jsdelivr.net"></script>
     
-    <!-- Your Custom JS (Requirement #1) -->
+    <!-- Your Custom JS -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
