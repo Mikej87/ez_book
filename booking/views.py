@@ -18,7 +18,7 @@ def menu(request):
 # CREATE: User makes a new booking
 
 
-class BookingCreateView(LoginRequiredMixin, CreateView):
+class BookingCreateView(CreateView):
     model = Booking
     fields = ['table', 'booking_date', 'booking_time', 'guest_count']
     template_name = 'booking_form.html'
@@ -31,18 +31,18 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
 # READ: User views their own reservations
 
 
-class BookingListView(LoginRequiredMixin, ListView):
+class BookingListView(ListView):
     model = Booking
     template_name = 'booking/my_bookings.html'
     context_object_name = 'bookings'
 
     def get_queryset(self):
-        return Booking.objects.filter(user=self.request.user)
+        return Booking.objects.all
 
 # UPDATE: User edits a booking
 
 
-class BookingUpdateView(LoginRequiredMixin, UpdateView):
+class BookingUpdateView(UpdateView):
     model = Booking
     fields = ['booking_date', 'booking_time', 'guest_count']
     template_name = 'booking_form.html'
@@ -51,7 +51,7 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
 # DELETE: User cancels a booking
 
 
-class BookingDeleteView(LoginRequiredMixin, DeleteView):
+class BookingDeleteView(DeleteView):
     model = Booking
     template_name = 'booking_confirm_delete.html'
     success_url = reverse_lazy('my_bookings')

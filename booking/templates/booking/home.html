@@ -10,12 +10,8 @@
             Reserve your table in seconds. Manage your bookings, explore our menu, and enjoy a seamless dining experience.
         </p>
         <hr class="my-4">
-        {% if user.is_authenticated %}
             <a class="btn btn-primary btn-lg" href="{% url 'booking_create' %}" role="button">Book a Table Now</a>
-        {% else %}
-            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login to Book</a>
-            <p class="mt-3 text-muted">New user? Use the Admin panel to create an account or add a registration page!</p>
-        {% endif %}
+        
     </div>
 </div>
 
