@@ -24,7 +24,8 @@ class Dish(models.Model):
 
 
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
+    # FIX 1: Made user optional (null=True, blank=True) and changed CASCADE to SET_NULL
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='bookings')
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='bookings')
     booking_date = models.DateField()
     guest_count = models.PositiveIntegerField()
@@ -56,9 +57,6 @@ class Booking(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.user.username} - Table {self.table.table_number} on {self.booking_date}"
-
-
-
-
-
+        # FIX 2: Check if user exists before trying to access the username attribute
+        username = self.user.username if self.user else "Anonymous Guest"
+        return f"{username} - Table {self.table.table_number} on {self.booking_date}"

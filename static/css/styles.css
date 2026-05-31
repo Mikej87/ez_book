@@ -1,5 +1,5 @@
 :root {
-    --primary-orange: #8e2708;
+    --primary-orange: #aa341063;
     --dark-bg: #212529;
 }
 
@@ -50,8 +50,8 @@ body {
 }
 
 .btn.btn-primary.btn-lg {
-    background-color: var(--primary-orange);
-    border-color: var(--primary-orange);
+    background-color: wheat;
+    border-color:  wheat;
     color: black;
 }
 
@@ -96,6 +96,13 @@ body {
 .table thead {
     background-color: var(--dark-bg);
     color: white;
+}
+
+.booking_confirm_delete-page {
+    background-image: url('../images/black-wooden-table.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 /* 5. Booking Form Spacing */

@@ -15,11 +15,12 @@
                     Time: {{ object.booking_time }}
                 </div>
 
-                <form id="reservation-create-form" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger px-4">Yes, Cancel Booking</button>
-                    <a href="{% url 'my_bookings' %}" class="btn btn-secondary px-4 ms-2">No, Keep It</a>
-                </form>
+                <form method="post" action="">
+    {% csrf_token %}
+    <!-- FIX: Changed from <a> to <button> so it actually submits the form deletion -->
+    <button type="submit" class="btn btn-danger px-4">Yes, Cancel Booking</button>
+    <a href="{% url 'my_bookings' %}" class="btn btn-secondary px-4 ms-2">No, Keep It</a>
+</form>
             </div>
             <div class="card-footer text-muted text-center small">
                 This action cannot be undone.
