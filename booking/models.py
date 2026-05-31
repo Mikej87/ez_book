@@ -4,52 +4,61 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 class Table(models.Model):
-    table_number = models.IntegerField(unique=True)
-    capacity = models.IntegerField() # e.g., 2, 4, or 6 guests
+    table_number = models.PositiveIntegerField(unique=True)
+    capacity = models.PositiveIntegerField()
 
     def __str__(self):
         return f"Table {self.table_number} ({self.capacity} seats)"
 
-class Booking(models.Model):
-    # Relationship: Each booking belongs to a User and a Table
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    table = models.ForeignKey(Table, on_delete=models.CASCADE)
-    booking_date = models.DateField()
-    booking_time = models.TimeField()
-    guest_count = models.PositiveIntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def clean(self):
-        overlap = Booking.objects.filter(
-            table=self.table,
-            booking_date=self.booking_date,
-            booking_time=self.booking_time
-        ).exclude(pk=self.pk)     
 
 class Dish(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
-    dishes = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_dishes')
-    items = models.ManyToManyField('Dish', related_name='bookings') 
+
+    class Meta:
+        verbose_name_plural = "Dishes"
 
     def __str__(self):
         return self.name
-    
-        if overlap.exists():
-            raise ValidationError("Sorry, this table is already booked for that time.")
 
-        # 2. Check Capacity: Ensure guest count fits the table
-        if self.guest_count > self.table.capacity:
-            raise ValidationError(f"This table only seats {self.table.capacity} people.")
 
-        # 3. Prevent past bookings
-        if self.booking_date < timezone.now().date():
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='bookings')
+    booking_date = models.DateField()
+    guest_count = models.PositiveIntegerField()
+    ordered_dishes = models.ManyToManyField(Dish, blank=True, related_name='booked_orders')
+
+    def clean(self):
+        super().clean()
+
+        # Prevent past bookings
+        if self.booking_date and self.booking_date < timezone.now().date():
             raise ValidationError("You cannot book a table in the past!")
 
+        # Check Table Capacity: Ensure guest count fits the table
+        if self.table and self.guest_count > self.table.capacity:
+            raise ValidationError(f"This table only seats {self.table.capacity} people.")
+
+        # Check for Overlapping Bookings on the same table and date
+        if self.table and self.booking_date:
+            overlap = Booking.objects.filter(
+                table=self.table,
+                booking_date=self.booking_date
+            ).exclude(pk=self.pk) # Excludes current booking if updating
+
+            if overlap.exists():
+                raise ValidationError("Sorry, this table is already booked for that date.")
+
     def save(self, *args, **kwargs):
-        self.full_clean() # Runs the clean() method above before saving
+        self.full_clean() # Forces Django Admin and forms to run the clean() validation above
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.username} - Table {self.table.table_number} on {self.booking_date}"
+
+
+
+
+
