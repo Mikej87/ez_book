@@ -37,12 +37,12 @@ body {
 
 /* 3. Custom Button Overrides */
 .btn.btn-primary {
-    color: wheat;
+    color: whitesmoke;
 }
 
 .btn-primary:hover {
-    background-color: wheat;
-    border-color: wheat;
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
 }
 
 .d-block.text-center.mt-3.text-muted {
@@ -50,12 +50,12 @@ body {
 }
 
 .btn.btn-primary.btn-lg {
-    background-color: wheat;
-    border-color:  wheat;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color:  var(--primary-orange);
+    color: whitesmoke;
 }
 
-/* 4. Table and Card Enhancements (Requirement #5) */
+/* Table and Card Enhancements */
 .card {
     border: none;
     border-radius: 12px;
@@ -63,7 +63,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Subtle lift effect */
+    transform: translateY(-5px); 
 }
 
 .menu-page { 
@@ -105,7 +105,7 @@ body {
     background-position: center;
 }
 
-/* 5. Booking Form Spacing */
+/* Booking Form Spacing */
 form p {
     margin-bottom: 1.5rem;
 }

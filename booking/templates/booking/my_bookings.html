@@ -27,7 +27,7 @@
                 </td>
             </tr>
             {% empty %}
-            <tr><td colspan="5" class="text-center">No bookings found. <a href="{% url 'booking_create' %}">Make one now!</a></td></tr>
+            <tr><td colspan="5" class="text-center" style="color: whitesmoke; background-color: rgba(0, 0, 0, 0.5)">No bookings found. <a href="{% url 'booking_create' %}" style="color: whitesmoke; background-color: rgba(0, 0, 0, 0.5)">Make one now!</a></td></tr>
             {% endfor %}
         </tbody>
     </table>

@@ -3,16 +3,18 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Booking, Table, Dish
 
+
 # HOME PAGE
+
 
 def home(request):
     return render(request, 'booking/home.html')
+
 
 def menu(request):
     dishes = Dish.objects.all()
     return render(request, 'booking/menu.html', {'dishes': dishes})
 
-# CREATE: User makes a new booking
 
 class BookingCreateView(CreateView):
     model = Booking
@@ -21,7 +23,6 @@ class BookingCreateView(CreateView):
     template_name = 'booking/booking_form.html'
     success_url = reverse_lazy('my_bookings')
 
-# READ: User views their own reservations
 
 class BookingListView(ListView):
     model = Booking
@@ -31,7 +32,9 @@ class BookingListView(ListView):
     def get_queryset(self):
         return Booking.objects.all()
 
+
 # UPDATE: User edits a booking
+
 
 class BookingUpdateView(UpdateView):
     model = Booking
@@ -40,7 +43,9 @@ class BookingUpdateView(UpdateView):
     template_name = 'booking/booking_form.html'
     success_url = reverse_lazy('my_bookings')
 
+
 # DELETE: User cancels a booking
+
 
 class BookingDeleteView(DeleteView):
     model = Booking
