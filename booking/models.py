@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+
 
 class Table(models.Model):
     table_number = models.PositiveIntegerField(unique=True)
@@ -27,8 +29,9 @@ class Booking(models.Model):
     # FIX 1: Made user optional (null=True, blank=True) and changed CASCADE to SET_NULL
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='bookings')
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='bookings')
-    booking_date = models.DateField()
-    guest_count = models.PositiveIntegerField()
+    booking_date = models.DateField(help_text="Choose a reservation date")
+    booking_time = models.TimeField(help_text="Choose a reservation time")
+    guest_count = models.PositiveIntegerField(help_text="Number of guests")
     ordered_dishes = models.ManyToManyField(Dish, blank=True, related_name='booked_orders')
 
     def clean(self):
@@ -38,11 +41,14 @@ class Booking(models.Model):
         if self.booking_date and self.booking_date < timezone.now().date():
             raise ValidationError("You cannot book a table in the past!")
 
-        # Check Table Capacity: Ensure guest count fits the table
-        if self.table and self.guest_count > self.table.capacity:
-            raise ValidationError(f"This table only seats {self.table.capacity} people.")
+        try:
+            # Check if table exists and guest count exceeds capacity
+            if self.table and self.guest_count > self.table.capacity:
+                raise ValidationError("Guest count exceeds table capacity.")
+        except ObjectDoesNotExist:
+            # If the booking doesn't have a table yet, add a clean form error
+            raise ValidationError({"table": "Please assign a table for this reservation."})
 
-        # Check for Overlapping Bookings on the same table and date
         if self.table and self.booking_date:
             overlap = Booking.objects.filter(
                 table=self.table,
@@ -53,10 +59,9 @@ class Booking(models.Model):
                 raise ValidationError("Sorry, this table is already booked for that date.")
 
     def save(self, *args, **kwargs):
-        self.full_clean() # Forces Django Admin and forms to run the clean() validation above
+        self.full_clean() 
         super().save(*args, **kwargs)
 
     def __str__(self):
-        # FIX 2: Check if user exists before trying to access the username attribute
         username = self.user.username if self.user else "Anonymous Guest"
         return f"{username} - Table {self.table.table_number} on {self.booking_date}"

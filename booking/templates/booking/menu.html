@@ -10,19 +10,15 @@
     <p class="lead text-muted">Freshly prepared meals for your perfect reservation.</p>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="card-columns" style="column-count: 3; column-gap: 1.5rem;">
     {% for dish in dishes %}
-    <div class="col">
         <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
                 <h5 class="card-title text-primary">{{ dish.name }}</h5>
-                <p class="card-text text-muted">Our signature selection, prepared daily.</p>
             </div>
             <div class="card-footer bg-white border-0 text-end">
-                <span class="badge bg-success rounded-pill">Available</span>
             </div>
         </div>
-    </div>
     {% empty %}
     <div class="col-12 text-center py-5">
         <p class="text-muted"></p>

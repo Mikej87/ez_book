@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Booking, Table, Dish
+from .models import Booking, Dish
 
 
 # HOME PAGE
@@ -19,7 +19,7 @@ def menu(request):
 class BookingCreateView(CreateView):
     model = Booking
     # FIX: Using only fields that actually exist in your model
-    fields = ['table', 'booking_date', 'guest_count']
+    fields = ['table', 'booking_date', 'booking_time', 'guest_count']
     template_name = 'booking/booking_form.html'
     success_url = reverse_lazy('my_bookings')
 
@@ -33,7 +33,7 @@ class BookingListView(ListView):
         return Booking.objects.all()
 
 
-# UPDATE: User edits a booking
+# User edits a booking
 
 
 class BookingUpdateView(UpdateView):
@@ -44,7 +44,7 @@ class BookingUpdateView(UpdateView):
     success_url = reverse_lazy('my_bookings')
 
 
-# DELETE: User cancels a booking
+# User cancels booking
 
 
 class BookingDeleteView(DeleteView):
