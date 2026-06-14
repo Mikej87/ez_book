@@ -1,3 +1,5 @@
+![EZ-bookwebsite](static/images/screenshot.png)
+
 # EZ_Book 
 
 EZ book is a resaurant booking system that delivers an easy straight forward way to reserve a table at different restaurants.
@@ -17,6 +19,9 @@ Clear instructions written in plain English.
 As a user, I want to see the most up to date menu.
 As a user, I want to be able to pick a date and time that is suitable.
 As a user, I 
+As a user, I want to be able to easily contact content creators for feedback or changes.
+As a user, I want the content to be accessible for anyone with diverse needs.
+
 
 
 ### Website goals and objectives
@@ -26,6 +31,7 @@ Provide an easy way to book a table, and view the menu.
 ### Target Auidience
 
 People looking at restaurants to book.
+Casual viewers
 
 ### Wireframes
 
@@ -33,6 +39,9 @@ Wireframes were designed using balsamiq tool. Following best practices, mobile v
 
 
 ### Design Choices 
+
+Typography
+
 
 ### Images
 
