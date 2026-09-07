@@ -26,13 +26,15 @@ class Dish(models.Model):
 
 
 class Booking(models.Model):
-    # FIX 1: Made user optional (null=True, blank=True) and changed CASCADE to SET_NULL
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='bookings')
-    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, 
+                             blank=True, related_name='bookings')
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name=
+                              'bookings')
     booking_date = models.DateField(help_text="Choose a reservation date")
     booking_time = models.TimeField(help_text="Choose a reservation time")
     guest_count = models.PositiveIntegerField(help_text="Number of guests")
-    ordered_dishes = models.ManyToManyField(Dish, blank=True, related_name='booked_orders')
+    ordered_dishes = models.ManyToManyField(Dish, blank=True, related_name=
+                                            'booked_orders')
 
     def clean(self):
         super().clean()
