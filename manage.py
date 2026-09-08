@@ -3,8 +3,6 @@ import sys
 
 
 def main():
-    """Run administrative tasks."""
-    # Ensure this matches your project folder name (ez_book)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'book.settings')
     try:
         from django.core.management import execute_from_command_line

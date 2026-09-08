@@ -35,17 +35,14 @@ class BookingListView(ListView):
 
 # User edits a booking
 
-
 class BookingUpdateView(UpdateView):
     model = Booking
-    # FIX: Match the valid field list here too
     fields = ['booking_date', 'guest_count']
     template_name = 'booking/booking_form.html'
     success_url = reverse_lazy('my_bookings')
 
 
 # User cancels booking
-
 
 class BookingDeleteView(DeleteView):
     model = Booking

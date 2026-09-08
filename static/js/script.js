@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Dynamic Navbar Background
-    // Changes the navbar from transparent to solid color on scroll
+    //  Dynamic Navbar Background
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -12,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Simple Booking Form Handling
-    // Targets the inputs you styled in CSS
+    //  Booking Form Handling
     const bookingForm = document.getElementById('reservation-create-form');
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
@@ -36,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Smooth Scroll for Nav Links
+    // Scroll for Nav Links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
             if (this.hash !== "") {

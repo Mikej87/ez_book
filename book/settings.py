@@ -2,20 +2,20 @@ import os
 from pathlib import Path
 import dj_database_url
 
-# 1. Build paths
+#  Build path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 2. SECURITY: Load Secret Key from Heroku Config Vars (Req #10)
+#  SECURITY: Load Secret Key 
 SECRET_KEY = os.environ.get('SECRET_KEY',
                             'django-insecure-local-development-key')
 
-# 3. SECURITY: Debug should be False on Heroku
+#  SECURITY: Debug should be False on Heroku
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['ez-book.herokuapp.com', '127.0.0.1', 'localhost',
                  '.herokuapp.com']
 
-# 4. Application definition
+#  Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'booking',  # Your new app name for EZ Book
+    'booking', 
 ]
 
 MIDDLEWARE = [
@@ -37,7 +37,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# 5. URLs and Templates
+#  URLs and Templates
 ROOT_URLCONF = 'book.urls'
 
 TEMPLATES = [
@@ -67,7 +67,7 @@ DATABASES = {
     )
 }
 
-# 7. Password validation
+#  Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.User'
      'AttributeSimilarityValidator', },
@@ -79,13 +79,13 @@ AUTH_PASSWORD_VALIDATORS = [
      'NumericPasswordValidator', },
 ]
 
-# 8. Internationalization
+#  Internationalization
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# 9. Static Files (CSS/JS) (Req #4 & #5)
+#  Static Files 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
