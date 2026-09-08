@@ -48,7 +48,7 @@ class Booking(models.Model):
             if self.table and self.guest_count > self.table.capacity:
                 raise ValidationError("Guest count exceeds table capacity.")
         except ObjectDoesNotExist:
-            # If the booking doesn't have a table yet, add a clean form error
+            # If the booking doesn't have a table yet add a clean form error
             raise ValidationError({"table": "Please assign a table for this reservation."})
 
         if self.table and self.booking_date:
