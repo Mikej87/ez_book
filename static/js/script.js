@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    //  Dynamic Navbar Background
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
