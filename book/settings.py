@@ -67,6 +67,10 @@ DATABASES = {
     )
 }
 
+if DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
+    DATABASES['default'].pop('OPTIONS', None)
+    DATABASES['default'].pop('CONN_MAX_AGE', None)
+
 #  Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.User'
