@@ -92,6 +92,7 @@ USE_TZ = True
 #  Static Files 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 10. Default Auto Field
